@@ -7,6 +7,14 @@ import javax.persistence.Table;
 @Entity
 //@Table(name = "MEMBER") 관례에 따라 entity와 테이블 명이 같은 경우 기술하지 않아도 무방
 public class Member {
+	public Member() {
+	}
+
+	public Member(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	@Id
 	private Long id;
 	private String name;
