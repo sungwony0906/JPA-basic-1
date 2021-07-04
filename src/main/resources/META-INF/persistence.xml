@@ -31,6 +31,14 @@
             <property name="hibernate.format_sql" value="true"/>
             <!-- query가 발생한 이유를 기술해주는 옵션 -->
             <property name="hibernate.use_sql_comments" value="true"/>
+            <!--
+            DDL구문을 생성/실행 해주는 옵션 => 반드시 개발 환경에서만 사용
+            create : drop -> create
+            create-drop : drop -> create -> drop
+            update : alter (변경 분만 반영)
+            validate : 실행 시점에 엔티티-테이블의 정상 매핑 확인
+            none : 사용하지 않음
+            -->
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
         </properties>
     </persistence-unit>
