@@ -1,12 +1,21 @@
 package valueType;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,4 +55,31 @@ public class Member{
             @AttributeOverride(name = "zipCode", column = @Column(name = "WORK_ZIPCODE"))
     })
     private Address workAddress;
+
+    //값 타입 컬렉션
+    //값 타입을 하나 이상 저장할 떄 사용
+    //@ElementCollection @CollectionTable 사용
+    //데이터베이스는 컬렉션을 같은 테이블에 저장할 수 없어 별도의 테이블을 생성해 매핑한다
+
+    //참고 : 값 타입 컬렉션은 영속성 전이(Cascade) + 고아 객체 제거 기능을 필수로 가진다고 볼 수 있다
+
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOOD", joinColumns =
+        @JoinColumn(name = "MEMBER_ID")
+    )
+    @Column(name = "FOOD_NAME") // 단일 값의 경우 예외적으로 column으로 지정한 이름을 테이블 명으로 생성해 준다
+    //create table FOOD_NAME
+    private Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS", joinColumns =
+        @JoinColumn(name = "MEMBER_ID")
+    )
+    //create table ADDRESS
+    private List<Address> addressHistory = new ArrayList<>();
+
+    //실무에서는 이렇게 사용하는걸 고려하라
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "MEMBER_ID")
+    private List<AddressEntity> addressEntityHistory = new ArrayList<>();
 }
