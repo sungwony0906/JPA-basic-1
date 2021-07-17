@@ -15,6 +15,7 @@ public class JpaMainCascade {
 		EntityTransaction tx = em.getTransaction();
 
 		try {
+			tx.begin();
 			Child child1 = new Child();
 			Child child2 = new Child();
 
