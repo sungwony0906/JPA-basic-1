@@ -21,7 +21,7 @@ public class JpaMainEntityMapping {
 
 		try {
 			tx.begin();
-			Member member = new Member();
+			Member member = new Member(1L, "Hello World");
 			member.setId(1L);
 			member.setName("HelloWorld");
 

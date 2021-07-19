@@ -11,12 +11,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 @Entity // @Entity가 붙은 클래스는 JPA가 관리하는 엔티티라고 한다
 //@Entity(name = "NAME") JPA에서 사용할 엔티티 이름을 지정한다(미지정시 클래스 이름을 그대로 사용 - 추천)
 //@Table(name = "MEMBER", catalog = "CATALOG", schema = "SCHEMA", uniqueConstraints = "INDEX") 관례에 따라 entity와 테이블 명이 같은 경우 기술하지 않아도 무방
+@Getter @Setter
 public class Member {
 
 	//기본 생성자 필수(파라미터가 없는 public 또는 protected 생성자)

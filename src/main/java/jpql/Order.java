@@ -24,6 +24,6 @@ public class Order {
     private Address address;
 
     @ManyToOne
-    @JoinColumn("PRODUCT_ID")
+    @JoinColumn(name = "PRODUCT_ID")
     private Product product;
 }
