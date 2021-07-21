@@ -40,6 +40,10 @@
             none : 사용하지 않음
             -->
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.default_batch_fetch_size" value="100"/> <!-- collection의 lazy loading 배치 사이즈를 설정 (1000 이하의 값 권장) -->
         </properties>
+        <!-- XML named query를 등록 -->
+        <!-- XML이 우선권을 갖는다 -->
+<!--        <mapping-file>META-INF/ormMember.xml</mapping-file> -->
     </persistence-unit>
 </persistence>
