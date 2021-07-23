@@ -1,2 +1,3 @@
 rootProject.name = 'JPA-basic-1'
+include 'jpashop'
 
